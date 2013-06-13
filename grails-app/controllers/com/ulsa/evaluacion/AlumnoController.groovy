@@ -99,4 +99,8 @@ class AlumnoController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def login() {
+		
+	}
 }
