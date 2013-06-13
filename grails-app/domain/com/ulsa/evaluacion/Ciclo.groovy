@@ -5,7 +5,7 @@ class Ciclo {
 	String nombre
 	String descripcion
 	
-	static hasMany = [grupos: Grupo, materias: Materia]
+	static hasMany = [grupos: Grupo, cicloMaterias: Ciclo]
 
     static constraints = {
 		clave nullable:false, blank: false

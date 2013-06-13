@@ -77,6 +77,28 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${alumnoInstance?.calificaciones}">
+				<li class="fieldcontain">
+					<span id="calificaciones-label" class="property-label"><g:message code="alumno.calificaciones.label" default="Calificaciones" /></span>
+					
+						<g:each in="${alumnoInstance.calificaciones}" var="c">
+						<span class="property-value" aria-labelledby="calificaciones-label"><g:link controller="califica" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.grupos}">
+				<li class="fieldcontain">
+					<span id="grupos-label" class="property-label"><g:message code="alumno.grupos.label" default="Grupos" /></span>
+					
+						<g:each in="${alumnoInstance.grupos}" var="g">
+						<span class="property-value" aria-labelledby="grupos-label"><g:link controller="grupo" action="show" id="${g.id}">${g?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
