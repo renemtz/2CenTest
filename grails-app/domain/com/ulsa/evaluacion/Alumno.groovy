@@ -8,7 +8,8 @@ class Alumno {
 	String contrasena
 	String email
 	
-	static hasMany = [calificaciones:Califica]
+	static hasMany = [grupos: Grupo, calificaciones:Califica]
+	static belongsTo = [Grupo]
 	
     static constraints = {
 		matricula nullable:false, unique: true

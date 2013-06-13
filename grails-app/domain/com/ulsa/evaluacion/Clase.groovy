@@ -2,7 +2,7 @@ package com.ulsa.evaluacion
 
 class Clase {
 	
-	static belongsTo = [profesor: Profesor, evaluacion:Evaluacion, materia: Materia]
+	static belongsTo = [profesor: Profesor, evaluacion:Evaluacion, materia: Materia, grupo: Grupo]
 	static hasMany = [calificaciones: Califica]
 
     static constraints = {
