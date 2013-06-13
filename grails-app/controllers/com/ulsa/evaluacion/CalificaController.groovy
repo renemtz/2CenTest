@@ -99,4 +99,19 @@ class CalificaController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def calificar(long id) {
+		def clase = Clase.get(id)
+		if (!clase) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'clase.label', default: 'Clase'), id])
+			redirect(controller: "clase", action: "list")
+			return
+		}
+		[clase: clase]
+		
+	}
+	
+	def save_calificaciones() {
+		System.out.println(params)
+	}
 }

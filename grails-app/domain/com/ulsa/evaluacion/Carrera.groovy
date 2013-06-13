@@ -11,6 +11,6 @@ class Carrera {
     }
 	
 	String toString() {
-		"${clave}"
+		"${clave} ${nombre}"
 	}
 }
