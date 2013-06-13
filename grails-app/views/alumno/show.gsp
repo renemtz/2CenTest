@@ -23,6 +23,60 @@
 			</g:if>
 			<ol class="property-list alumno">
 			
+				<g:if test="${alumnoInstance?.matricula}">
+				<li class="fieldcontain">
+					<span id="matricula-label" class="property-label"><g:message code="alumno.matricula.label" default="Matricula" /></span>
+					
+						<span class="property-value" aria-labelledby="matricula-label"><g:fieldValue bean="${alumnoInstance}" field="matricula"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.nombre}">
+				<li class="fieldcontain">
+					<span id="nombre-label" class="property-label"><g:message code="alumno.nombre.label" default="Nombre" /></span>
+					
+						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${alumnoInstance}" field="nombre"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.paterno}">
+				<li class="fieldcontain">
+					<span id="paterno-label" class="property-label"><g:message code="alumno.paterno.label" default="Paterno" /></span>
+					
+						<span class="property-value" aria-labelledby="paterno-label"><g:fieldValue bean="${alumnoInstance}" field="paterno"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.materno}">
+				<li class="fieldcontain">
+					<span id="materno-label" class="property-label"><g:message code="alumno.materno.label" default="Materno" /></span>
+					
+						<span class="property-value" aria-labelledby="materno-label"><g:fieldValue bean="${alumnoInstance}" field="materno"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.contrasena}">
+				<li class="fieldcontain">
+					<span id="contrasena-label" class="property-label"><g:message code="alumno.contrasena.label" default="Contrasena" /></span>
+					
+						<span class="property-value" aria-labelledby="contrasena-label"><g:fieldValue bean="${alumnoInstance}" field="contrasena"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${alumnoInstance?.email}">
+				<li class="fieldcontain">
+					<span id="email-label" class="property-label"><g:message code="alumno.email.label" default="Email" /></span>
+					
+						<span class="property-value" aria-labelledby="email-label"><g:fieldValue bean="${alumnoInstance}" field="email"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">
