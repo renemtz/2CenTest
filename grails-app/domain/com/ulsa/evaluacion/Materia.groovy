@@ -6,8 +6,8 @@ class Materia {
 	String nombre
 	String grado
 	
-	static hasMany = [ciclos:Ciclo]
-	static belongsTo = [carrera:Carrera, ciclos:Ciclo]
+	static belongsTo = [carrera:Carrera]
+	
 	
     static constraints = {
 		clave nullable:false
