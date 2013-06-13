@@ -99,4 +99,29 @@ class EvaluacionController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def crear() {
+		
+	}
+	
+	def save_evaluacion() {
+		System.out.println(params)
+		def evaluacion = new Evaluacion(clave: params.clave, nombre: params.nombre, descripcion:params.descripcion)
+		
+		int tamano = Integer.parseInt(params.tamano)
+		for (int i=1; i<=tamano; i++) {
+			if (params.get("p"+i)) {
+				def pregunta = new Pregunta(descripcion: params.get("p"+i))
+				evaluacion.addToPreguntas(pregunta)
+			}
+		}
+		
+		if (!evaluacion.save(flush: true)) {
+			render(view: "create", model: [evaluacionInstance: evaluacion])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'evaluacion.label', default: 'Evaluacion'), evaluacion.id])
+		redirect(action: "show", id: evaluacion.id)
+	}
 }

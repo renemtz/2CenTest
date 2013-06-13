@@ -67,6 +67,12 @@
 									</g:radioGroup></td>
 						</tr>
 					</g:each>
+					<tr>
+						<td>Comentarios</td>
+						<td>
+							<g:textArea id="comentarios" name="comentarios" rows="5" cols="40"/>
+						</td>
+					</tr>
 				</table>
 			</fieldset>
 			<fieldset class="buttons">
