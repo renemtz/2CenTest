@@ -50,3 +50,28 @@
 	<g:field type="email" name="email" value="${alumnoInstance?.email}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: alumnoInstance, field: 'calificaciones', 'error')} ">
+	<label for="calificaciones">
+		<g:message code="alumno.calificaciones.label" default="Calificaciones" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${alumnoInstance?.calificaciones?}" var="c">
+    <li><g:link controller="califica" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="califica" action="create" params="['alumno.id': alumnoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'califica.label', default: 'Califica')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: alumnoInstance, field: 'grupos', 'error')} ">
+	<label for="grupos">
+		<g:message code="alumno.grupos.label" default="Grupos" />
+		
+	</label>
+	
+</div>
+

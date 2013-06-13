@@ -7,6 +7,7 @@ class Materia {
 	String grado
 	
 	static belongsTo = [carrera:Carrera]
+	static hasMany = [cicloMaterias: CicloMateria]
 	
 	
     static constraints = {
