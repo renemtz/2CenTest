@@ -18,6 +18,6 @@ class Profesor {
     }
 	
 	String toString() {
-		"${descripcion}"
+		"${clave}, ${nombre}, ${paterno}, ${materno}"
 	}
 }
