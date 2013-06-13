@@ -4,6 +4,8 @@ class Evaluacion {
 	String clave
 	String nombre
 	String descripcion
+	
+	static hasMany = [preguntas: Pregunta, clases: Clase]
 
     static constraints = {
 		clave nullable:false, unique:true
