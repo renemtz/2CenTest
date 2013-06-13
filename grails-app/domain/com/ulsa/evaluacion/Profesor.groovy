@@ -7,6 +7,8 @@ class Profesor {
 	String materno
 	String email
 
+	static hasMany = [clases:Clase]
+	
     static constraints = {
 		clave nullable:false, unique: true
 		nombre nullable:false

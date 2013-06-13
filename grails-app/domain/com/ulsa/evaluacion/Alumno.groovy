@@ -7,7 +7,9 @@ class Alumno {
 	String materno
 	String contrasena
 	String email
-
+	
+	static hasMany = [calificaciones:Califica]
+	
     static constraints = {
 		matricula nullable:false, unique: true
 		nombre nullable:false
