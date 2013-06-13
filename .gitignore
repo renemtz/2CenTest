@@ -38,7 +38,7 @@
 /web-app/WEB-INF/classes
 
 # "temporary" build files
-#/target
+/target
 
 # other
 *.iws
