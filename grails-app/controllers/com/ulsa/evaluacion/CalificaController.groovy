@@ -110,4 +110,8 @@ class CalificaController {
 		[clase: clase]
 		
 	}
+	
+	def save_calificaciones() {
+		System.out.println(params)
+	}
 }
