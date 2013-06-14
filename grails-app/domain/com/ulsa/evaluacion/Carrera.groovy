@@ -5,7 +5,7 @@ class Carrera {
 	String nombre
 	String responsable
 
-	static hasMany = [materias: Materia]
+	static hasMany = [materias: Materia, grupos: Grupo]
 	
     static constraints = {
 		clave nullable:false, blank: false

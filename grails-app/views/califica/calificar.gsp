@@ -25,7 +25,6 @@
 			alert('incompletos');
 		}
 		/*
-		
 		for ( var i = 0; i < elementos.length; i++) {
 			alert(" Elemento: " + elementos[i].value + "\n Seleccionado: "
 					+ elementos[i].checked);

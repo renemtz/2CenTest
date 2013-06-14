@@ -141,5 +141,30 @@ class GrupoController {
 	
 	def save_grupo() {
 		System.out.println(params)
+		System.out.println("ss "+params.keySet().toList())
+		System.out.println("ss "+params.values().toList())
+		//Identificamos los índices de donde se encuentran los valores
+		def ciclo = Ciclo.get(Long.parseLong(params.ciclo.id))
+		def carrera = Carrera.get(Long.parseLong(params.carrera.id))
+		for (int i=0; i<params.keySet().toList().size; i++) {
+			if (params.keySet().toList().get(i).contains("semGrupo")) {
+				def grupo = new Grupo(nombre: params.values().toList().get(i))
+				ciclo.addToGrupos(grupo)
+				carrera.addToGrupos(grupo)
+			}
+		}
+		
+		if (!carrera.save(flush: true)) {
+			render(view: "list")
+			return
+		}
+		
+		if (!ciclo.save(flush: true)) {
+			render(view: "list")
+			return
+		}
+		
+		redirect(action: "list")
+		
 	}
 }
