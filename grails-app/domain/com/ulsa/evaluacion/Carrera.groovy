@@ -5,6 +5,8 @@ class Carrera {
 	String nombre
 	String responsable
 
+	static hasMany = [materias: Materia]
+	
     static constraints = {
 		clave nullable:false, blank: false
 		nombre nullable:false 

@@ -103,11 +103,40 @@ class GrupoController {
 	def crear(Long id) {
 		def carrera = Carrera.get(id)
 		def semestres = new ArrayList()
-		for (int i=0; i<carrera.numSemestres; i++) {
+		for (int i=0; i<8; i++) {
 			semestres.add((i+1))
 		}
 		[carrera: carrera, semestres: semestres]
 		
+	}
+	
+	def crear2() {
+		
+	}
+	
+	def actualizarSemestres() {
+		System.out.println(params)
+		def semestres = new ArrayList()
+		def carrera
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			
+			carrera = Carrera.get(Long.parseLong(params.carrera))
+			def ciclo = Ciclo.get(Long.parseLong(params.ciclo))
+			for (Materia m in carrera.materias){
+				for (CicloMateria cM in m.cicloMaterias) {
+					if (cM.ciclos.id.equals(Long.parseLong(params.ciclo))) {
+						semestres.add(m.grado)
+						System.out.println(m.grado)
+					}
+				}
+				
+			}
+		} else {
+			carrera=null
+			semestres = new ArrayList()
+		}
+		
+		render(template: "semestres", model: [carrera: carrera, semestres:semestres])
 	}
 	
 	def save_grupo() {

@@ -41,6 +41,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${carreraInstance?.materias}">
+				<li class="fieldcontain">
+					<span id="materias-label" class="property-label"><g:message code="carrera.materias.label" default="Materias" /></span>
+					
+						<g:each in="${carreraInstance.materias}" var="m">
+						<span class="property-value" aria-labelledby="materias-label"><g:link controller="materia" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${carreraInstance?.responsable}">
 				<li class="fieldcontain">
 					<span id="responsable-label" class="property-label"><g:message code="carrera.responsable.label" default="Responsable" /></span>

@@ -10,11 +10,11 @@ class Materia {
 	static hasMany = [cicloMaterias: CicloMateria]
 	
 	
-    static constraints = {
+	static constraints = {
 		clave nullable:false
 		nombre nullable:false
 		grado nullable:false
-    }
+	}
 	
 	String toString() {
 		"${nombre}"
