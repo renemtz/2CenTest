@@ -4,7 +4,7 @@ class Materia {
 	
 	String clave
 	String nombre
-	String grado
+	int grado
 	
 	static belongsTo = [carrera:Carrera]
 	static hasMany = [cicloMaterias: CicloMateria]

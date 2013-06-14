@@ -28,8 +28,6 @@
 					
 						<g:sortableColumn property="nombre" title="${message(code: 'carrera.nombre.label', default: 'Nombre')}" />
 					
-						<g:sortableColumn property="numSemestres" title="${message(code: 'carrera.numSemestres.label', default: 'Num Semestres')}" />
-					
 						<g:sortableColumn property="responsable" title="${message(code: 'carrera.responsable.label', default: 'Responsable')}" />
 					
 					</tr>
@@ -41,8 +39,6 @@
 						<td><g:link action="show" id="${carreraInstance.id}">${fieldValue(bean: carreraInstance, field: "clave")}</g:link></td>
 					
 						<td>${fieldValue(bean: carreraInstance, field: "nombre")}</td>
-					
-						<td>${fieldValue(bean: carreraInstance, field: "numSemestres")}</td>
 					
 						<td>${fieldValue(bean: carreraInstance, field: "responsable")}</td>
 					
