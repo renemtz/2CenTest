@@ -41,6 +41,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${carreraInstance?.numSemestres}">
+				<li class="fieldcontain">
+					<span id="numSemestres-label" class="property-label"><g:message code="carrera.numSemestres.label" default="Num Semestres" /></span>
+					
+						<span class="property-value" aria-labelledby="numSemestres-label"><g:fieldValue bean="${carreraInstance}" field="numSemestres"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${carreraInstance?.responsable}">
 				<li class="fieldcontain">
 					<span id="responsable-label" class="property-label"><g:message code="carrera.responsable.label" default="Responsable" /></span>

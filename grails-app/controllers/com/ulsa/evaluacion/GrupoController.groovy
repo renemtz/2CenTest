@@ -99,4 +99,18 @@ class GrupoController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def crear(Long id) {
+		def carrera = Carrera.get(id)
+		def semestres = new ArrayList()
+		for (int i=0; i<carrera.numSemestres; i++) {
+			semestres.add((i+1))
+		}
+		[carrera: carrera, semestres: semestres]
+		
+	}
+	
+	def save_grupo() {
+		System.out.println(params)
+	}
 }

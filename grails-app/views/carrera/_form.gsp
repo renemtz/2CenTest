@@ -18,6 +18,14 @@
 	<g:textField name="nombre" value="${carreraInstance?.nombre}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: carreraInstance, field: 'numSemestres', 'error')} required">
+	<label for="numSemestres">
+		<g:message code="carrera.numSemestres.label" default="Num Semestres" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="numSemestres" type="number" value="${carreraInstance.numSemestres}" required=""/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: carreraInstance, field: 'responsable', 'error')} ">
 	<label for="responsable">
 		<g:message code="carrera.responsable.label" default="Responsable" />
