@@ -1,14 +1,18 @@
 <div id="mostrarClases" name="mostrarClases">
 	<div
 		class="fieldcontain ${hasErrors(bean: claseInstance, field: 'grupo', 'error')} required">
-		<label for="grupo"> <g:message code="clase.grupo.label"
-				default="Grupo" /> <span class="required-indicator">*</span>
-		</label>
+		<br>
 		<g:if test="${clases}">
 			<table>
+				<tr>
+					<th>Materia</th>
+					<th>Profesor</th>
+				</tr>
 				<g:each var="clase" in="${clases}">
 					<tr>
-						<td>${clase.materia}</td>
+						<td>
+							${clase.materia}
+						</td>
 						<td>
 							<div
 								class="fieldcontain ${hasErrors(bean: claseInstance, field: 'profesor', 'error')} required">
@@ -16,7 +20,8 @@
 										code="clase.profesor.label" default="Profesor" /> <span
 									class="required-indicator">*</span>
 								</label>
-								<g:select id="profesor" name="profesor.id"
+								<g:select id="profesor" name="profesor.id" 
+									noSelection="['':'Seleccione un profesor']"
 									from="${com.ulsa.evaluacion.Profesor.list()}" optionKey="id"
 									required="" value="${claseInstance?.profesor?.id}"
 									class="many-to-one" />

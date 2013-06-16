@@ -11,7 +11,7 @@
 				class="many-to-one"
 				onchange="${remoteFunction(action: 'actualizarMostrarClases',
                        update: 'mostrarClases',
-                       params: '\'grupo=\' + this.value')}" />
+                       params: '\'grupo=\' + this.value+\'&ciclo=\' + ciclo.value+\'&carrera=\' + carrera.value')}" />
 		</g:if>
 		<g:else>
 			no definido

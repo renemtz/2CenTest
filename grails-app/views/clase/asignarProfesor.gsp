@@ -7,7 +7,12 @@
 	value="${message(code: 'clase.label', default: 'Clase')}" />
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script>
+		function validar() {
+
+		}
+	</script>
 </head>
 <body>
 	<a href="#create-clase" class="skip" tabindex="-1"><g:message
@@ -53,7 +58,10 @@
 						class="many-to-one"
 						onchange="${remoteFunction(action: 'actualizarGrupos',
                        update: 'comboGrupos',
-                       params: '\'ciclo=\' + this.value+\'&carrera=\' + carrera.value')}" />
+                       params: '\'ciclo=\' + this.value+\'&carrera=\' + carrera.value')}" 
+                       onclick="${remoteFunction(action: 'actualizarMostrarClases',
+                       update: 'mostrarClases',
+                       params: '\'grupo=\' + grupo.value+\'&ciclo=\' + this.value+\'&carrera=\' + carrera.value')}"/>
 				</div>
 
 				<div
@@ -68,15 +76,18 @@
 						class="many-to-one"
 						onchange="${remoteFunction(action: 'actualizarGrupos',
                        update: 'comboGrupos',
-                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}" />
+                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}"
+						onclick="${remoteFunction(action: 'actualizarMostrarClases',
+                       update: 'mostrarClases',
+                       params: '\'grupo=\' + grupo.value+\'&ciclo=\' + ciclo.value+\'&carrera=\' + this.value')}" />
 				</div>
-				
+
 				<g:render template="comboGrupo" />
 				<g:render template="mostrarClases" />
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="create" class="save"
-					value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				<input type="button"  name="create" class="save" value="Crear" onCick="validar()"/>
+				
 			</fieldset>
 		</g:form>
 	</div>

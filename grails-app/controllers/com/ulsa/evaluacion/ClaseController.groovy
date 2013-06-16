@@ -133,14 +133,19 @@ class ClaseController {
 		System.out.println(params)
 		def clases
 		
-		if(!params.grupo.equals("")) {
+		if(!params.grupo.equals("") && !params.carrera.equals("") && !params.ciclo.equals("")) {
 			def criterio = Clase.createCriteria()
 			if (criterio) {
 				clases = criterio.listDistinct {
 					grupo {
 						eq 'id', Long.parseLong(params.grupo)
 					}
+					materia {
+						order("nombre", "desc")
+					}
+					
 				}
+				
 			}
 		}
 		System.out.println("entra "+(clases!=null?clases.size():"0"))
