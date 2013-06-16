@@ -198,49 +198,13 @@ class GrupoController {
 						if (cM.ciclos.id.equals(Long.parseLong(params.ciclo.id))) {
 							if (m.grado.equals(Integer.parseInt(semestre))){
 								//La materia pertenece al grupo por lo que debemos crear una clase
-								System.out.println(m.grado+" "+m.nombre)
-								/*Clase clase = new Clase();
-								clase.setGrupo(grupo)
-								clase.setMateria(m)
-								if (!clase.save(flush: true)) {
-									System.out.println("no a la clase")
+								def clase = new Clase();
+								m.addToClases(clase)
+								if (!m.save(flush: true)) {
 									render(view: "list")
 									return
-								}else {
-									System.out.println("Agregamos a la clase")
 								}
-								*/
-								//m.addToClases(clase)
-								//grupo.addToClases(clase)
-								//def profesor = Profesor.get(1)
-								//def evaluacion = Evaluacion.get(1)
-								//evaluacion.addToClases(clase)
-								//profesor.addToClases(clase)
-								/*if (!evaluacion.save(flush: true)) {
-									System.out.println("no a la evaluacion")
-									render(view: "list")
-									return
-								} else {
-									System.out.println("Agregamos a la evaluacion")
-								}*/
-								/*if (!profesor.save()) {
-									System.out.println("no a la profesor")
-									render(view: "list")
-									return
-								} else {
-									System.out.println("Agregamos a la profesor")
-								}*/
-								/*if (!m.save(validate: false)) {
-									System.out.println("no a la materia")
-									m.errors.each {
-										println 
-									}
-									render(view: "list")
-									return
-								} else {
-									System.out.println("Agregamos a la materia")
-								}*/
-								
+								grupo.addToClases(clase)
 							}
 						}
 					}
@@ -254,19 +218,13 @@ class GrupoController {
 
 
 		if (!carrera.save(flush: true)) {
-			System.out.println("no a la carrera")
 			render(view: "list")
 			return
-		}else {
-			System.out.println("Agregamos a la carrera")
 		}
 
 		if (!ciclo.save(flush: true)) {
-			System.out.println("no a la ciclo")
 			render(view: "list")
 			return
-		} else {
-			System.out.println("Agregamos a la ciclo")
 		}
 
 		redirect(action: "list")
