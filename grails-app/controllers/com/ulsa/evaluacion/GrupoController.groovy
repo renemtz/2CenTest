@@ -139,7 +139,15 @@ class GrupoController {
 			for (Materia m in carrera.materias){
 				for (CicloMateria cM in m.cicloMaterias) {
 					if (cM.ciclos.id.equals(Long.parseLong(params.ciclo))) {
-						semestres.add(m.grado)
+						boolean esta=false
+						for (int i=0; i<semestres.size(); i++) {
+							if (semestres.get(i).equals(m.grado)) {
+								esta=true
+							}
+						}
+						if (!esta) {
+							semestres.add(m.grado)
+						}
 					}
 				}
 			}
@@ -200,12 +208,13 @@ class GrupoController {
 							if (m.grado.equals(Integer.parseInt(semestre))){
 								//La materia pertenece al grupo por lo que debemos crear una clase
 								def clase = new Clase();
+								grupo.addToClases(clase)
 								m.addToClases(clase)
-								if (!m.save(flush: true)) {
+								if (!m.save(validate: false)) {
 									render(view: "list")
 									return
 								}
-								grupo.addToClases(clase)
+								
 							}
 						}
 					}
