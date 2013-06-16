@@ -20,10 +20,10 @@
 										code="clase.profesor.label" default="Profesor" /> <span
 									class="required-indicator">*</span>
 								</label>
-								<g:select id="profesor" name="profesor.id" 
+								<g:select id="profesor${clase.id}" name="profesor.id${clase.id}" 
 									noSelection="['':'Seleccione un profesor']"
 									from="${com.ulsa.evaluacion.Profesor.list()}" optionKey="id"
-									required="" value="${claseInstance?.profesor?.id}"
+									required="" value="${clase?.profesor?.id}"
 									class="many-to-one" />
 							</div>
 						</td>

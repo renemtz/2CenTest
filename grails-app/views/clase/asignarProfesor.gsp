@@ -10,13 +10,13 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script>
 		function validar() {
-			var inputs = document.getElementsByTagName('input');
+			var tabla = document.getElementById('mostrarClases');
+			var selects = tabla.getElementsByTagName('select');
 			var pasa = true;
-			for ( var i = 0; i < inputs.length; i++) {
-				if (inputs[i].type == 'text') {
-					if (inputs[i].value=="") {
-						pasa = false;
-					}
+			for ( var i = 0; i < selects.length; i++) {
+				
+				if (selects[i].value == '') {
+					pasa = false;
 		        }
 			}
 			//alert(element.childNodes);
@@ -58,7 +58,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form action="save">
+		<g:form action="save_asignacion_profesor" id="formulario" name="formulario">
 			<fieldset class="form">
 				<div
 					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'ciclo', 'error')} required">
@@ -100,7 +100,7 @@
 				<g:render template="mostrarClases" />
 			</fieldset>
 			<fieldset class="buttons">
-				<input type="button"  name="create" class="save" value="Crear" onCick="validar()"/>
+				<input type="button"  name="create" class="save" value="Crear" onClick="validar()"/>
 				
 			</fieldset>
 		</g:form>
