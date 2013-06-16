@@ -99,4 +99,32 @@ class ClaseController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def asignarProfesor() {
+		System.out.println(params)
+	}
+	
+	def actualizarGrupos() {
+		System.out.println(params)
+		def grupos = new ArrayList()
+		
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Grupo.createCriteria()
+			if (criterio) {
+				grupos = criterio.listDistinct {
+					carrera {
+						eq 'id', Long.parseLong(params.carrera)
+					}
+					and {
+						ciclo {
+							eq 'id', Long.parseLong(params.ciclo)
+						}
+					}
+				}
+			}
+		}
+		System.out.println("entra "+(grupos!=null?grupos.size():"0"))
+		
+		render(template: "comboGrupo", model: [grupos: grupos])
+	}
 }
