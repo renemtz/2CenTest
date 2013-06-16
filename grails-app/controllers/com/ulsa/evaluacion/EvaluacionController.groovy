@@ -104,6 +104,14 @@ class EvaluacionController {
 		
 	}
 	
+	def asignar(){
+		
+	}
+	
+	def actualizarCiclos(){
+
+	}
+	
 	def save_evaluacion() {
 		System.out.println(params)
 		def evaluacion = new Evaluacion(clave: params.clave, nombre: params.nombre, descripcion:params.descripcion)

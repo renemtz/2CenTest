@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Productos</title>
+<title>Crear Evaluaciones</title>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <meta name="layout" content="main">
 <script>
