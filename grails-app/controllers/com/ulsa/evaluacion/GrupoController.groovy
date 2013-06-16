@@ -149,6 +149,7 @@ class GrupoController {
 
 		render(template: "semestres", model: [carrera: carrera, semestres:semestres])
 	}
+	
 
 	private void ordenar(ArrayList vector) {
 

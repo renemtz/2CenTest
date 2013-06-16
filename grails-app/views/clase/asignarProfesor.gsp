@@ -72,6 +72,7 @@
 				</div>
 				
 				<g:render template="comboGrupo" />
+				<g:render template="mostrarClases" />
 			</fieldset>
 			<fieldset class="buttons">
 				<g:submitButton name="create" class="save"

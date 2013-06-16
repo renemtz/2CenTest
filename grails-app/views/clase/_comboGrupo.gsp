@@ -1,12 +1,17 @@
 <div id="comboGrupos" name="comboGrupos">
-	<div class="fieldcontain ${hasErrors(bean: claseInstance, field: 'grupo', 'error')} required">
+	<div
+		class="fieldcontain ${hasErrors(bean: claseInstance, field: 'grupo', 'error')} required">
 		<label for="grupo"> <g:message code="clase.grupo.label"
 				default="Grupo" /> <span class="required-indicator">*</span>
 		</label>
 		<g:if test="${grupos}">
 			definido
-			<g:select id="grupo" name="grupo.id" from="${grupos}" optionKey="id" noSelection="['':'Seleccione un grupo']"
-				required="" value="1" class="many-to-one" />
+			<g:select id="grupo" name="grupo.id" from="${grupos}" optionKey="id"
+				noSelection="['':'Seleccione un grupo']" required=""
+				class="many-to-one"
+				onchange="${remoteFunction(action: 'actualizarMostrarClases',
+                       update: 'mostrarClases',
+                       params: '\'grupo=\' + this.value')}" />
 		</g:if>
 		<g:else>
 			no definido

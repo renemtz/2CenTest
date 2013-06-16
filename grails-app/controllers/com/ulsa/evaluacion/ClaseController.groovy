@@ -106,7 +106,7 @@ class ClaseController {
 	
 	def actualizarGrupos() {
 		System.out.println(params)
-		def grupos = new ArrayList()
+		def grupos
 		
 		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
 			def criterio = Grupo.createCriteria()
@@ -126,5 +126,26 @@ class ClaseController {
 		System.out.println("entra "+(grupos!=null?grupos.size():"0"))
 		
 		render(template: "comboGrupo", model: [grupos: grupos])
+	}
+	
+	
+	def actualizarMostrarClases() {
+		System.out.println(params)
+		def clases
+		
+		if(!params.grupo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clases = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+				}
+			}
+		}
+		System.out.println("entra "+(clases!=null?clases.size():"0"))
+		
+		render(template: "mostrarClases", model: [clases: clases])
+		
 	}
 }
