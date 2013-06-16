@@ -10,7 +10,21 @@
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script>
 		function validar() {
-
+			var inputs = document.getElementsByTagName('input');
+			var pasa = true;
+			for ( var i = 0; i < inputs.length; i++) {
+				if (inputs[i].type == 'text') {
+					if (inputs[i].value=="") {
+						pasa = false;
+					}
+		        }
+			}
+			//alert(element.childNodes);
+			if (pasa) {
+				$("#formulario").submit();
+			} else {
+				alert("Todos los campos deben estar completos");
+			}
 		}
 	</script>
 </head>

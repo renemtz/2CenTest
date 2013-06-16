@@ -131,7 +131,7 @@ class EvaluacionController {
 	
 	def actualizarClasesAsignar(){
 		System.out.println(params)
-		//def clases
+		def clases
 		
 		if(!params.grupo.equals("")) {
 			def criterio = Clase.createCriteria()
@@ -140,7 +140,7 @@ class EvaluacionController {
 					grupo {
 						eq 'id', Long.parseLong(params.grupo)
 					}
-					and{
+					and {
 						isNull("evaluacion")
 					}
 				}
