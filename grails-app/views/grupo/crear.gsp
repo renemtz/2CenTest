@@ -10,6 +10,9 @@
 		args="[entityName]" /></title>
 
 <script>
+			var semestre="";
+			var numeroSemestres=0;
+			var miArray;
 			function habilitar(id) {
 				if ($('#check'+id).is(':checked')) {
 					var cadena="";
@@ -17,6 +20,7 @@
 					cadena+="<div id='grupos"+id+"' name='grupos"+id+"'></div>";
 					$("#div"+id).html(cadena);
 					agregarGrupo(id);
+					
 				} else {
 					$("#div"+id).html("");
 				}
@@ -25,13 +29,38 @@
 			function agregarGrupo(id) {
 				var numGrupos = parseInt($("#numGrupos"+id).val());
 				var cadena="<table>";
+				var aux;
 				for (var i=1; i<=numGrupos; i++) {
+					aux = $("#semGrupo"+id+"-"+i).val();
 					cadena+="<tr>";
 					cadena+="<td>Grupo "+i+"</td>";
-					cadena+="<td><input type='text' id='semGrupo"+id+"-"+i+"' name='semGrupo"+id+"-"+i+"'/></td>";
+					if (aux!=undefined) {
+						cadena+="<td><input type='text' id='semGrupo"+id+"-"+i+"' name='semGrupo"+id+"-"+i+"' value='"+aux+"'/></td>";
+					} else {
+						cadena+="<td><input type='text' id='semGrupo"+id+"-"+i+"' name='semGrupo"+id+"-"+i+"'/></td>";
+					}
 					cadena+="</tr>";
 				}
+				$('#semestresTxt').val(semestre);
 				$('#grupos'+id).html(cadena);
+			}
+
+			function validar() {
+				var inputs = document.getElementsByTagName('input');
+				var pasa = true;
+				for ( var i = 0; i < inputs.length; i++) {
+					if (inputs[i].type == 'text') {
+						if (inputs[i].value=="") {
+							pasa = false;
+						}
+			        }
+				}
+				//alert(element.childNodes);
+				if (pasa) {
+					$("#formulario").submit();
+				} else {
+					alert("Todos los campos deben estar completos");
+				}
 			}
 		</script>
 </head>
@@ -65,7 +94,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form action="save_grupo">
+		<g:form action="save_grupo" id="formulario" name="formulario">
 			<fieldset class="form">
 				<div
 					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'ciclo', 'error')} required">
@@ -73,9 +102,13 @@
 							default="Ciclo escolar" /> <span class="required-indicator">*</span>
 					</label>
 					<g:select id="ciclo" name="ciclo.id"
+						noSelection="['':'Seleccione un ciclo']"
 						from="${com.ulsa.evaluacion.Ciclo.list()}" optionKey="id"
 						required="" value="${grupoInstance?.ciclo?.id}"
-						class="many-to-one" />
+						class="many-to-one"
+						onchange="${remoteFunction(action: 'actualizarSemestres',
+                       update: 'semestres',
+                       params: '\'ciclo=\' + this.value+\'&carrera=\' + carrera.value')}" />
 				</div>
 
 				<div
@@ -84,35 +117,21 @@
 							default="Carrera" /> <span class="required-indicator">*</span>
 					</label>
 					<g:select id="carrera" name="carrera.id"
+						noSelection="['':'Seleccione una carrera']"
 						from="${com.ulsa.evaluacion.Carrera.list()}" optionKey="id"
 						required="" value="${grupoInstance?.carrera?.id}"
-						class="many-to-one" />
+						class="many-to-one"
+						onchange="${remoteFunction(action: 'actualizarSemestres',
+                       update: 'semestres',
+                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}" />
 				</div>
 
-				<div
-					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'carrera', 'error')} required">
-					<label for="carrera"> <g:message code="grupo.carrera.label"
-							default="Semestres" /> <span class="required-indicator">*</span>
-					</label>
-
-					<g:if test="${semestres}">
-						<g:each var="semestre" in="${semestres}">
-							<br>
-							<g:checkBox id="check${semestre}" name="check${semestre}"
-								value="${false}" onChange="habilitar(${semestre})" />
-							${semestre}º Semestre
-							<div id="div${semestre}" name="div${semestre}"></div>
-							<br>
-
-						</g:each>
-					</g:if>
-
-				</div>
+				<g:render template="semestres" />
 
 			</fieldset>
 			<fieldset class="buttons">
-				<g:submitButton name="create" class="save"
-					value="${message(code: 'default.button.create.label', default: 'Create')}" />
+				<input type="button" name="create" class="save" value="Crear"
+					onClick="validar()" />
 			</fieldset>
 		</g:form>
 	</div>

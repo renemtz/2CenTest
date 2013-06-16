@@ -43,6 +43,14 @@
 	<g:select id="materia" name="materia.id" from="${com.ulsa.evaluacion.Materia.list()}" optionKey="id" required="" value="${claseInstance?.materia?.id}" class="many-to-one"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: claseInstance, field: 'profe', 'error')} required">
+	<label for="profe">
+		<g:message code="clase.profe.label" default="Profe" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="profe" name="profe.id" from="${com.ulsa.evaluacion.Profesor.list()}" optionKey="id" required="" value="${claseInstance?.profe?.id}" class="many-to-one"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: claseInstance, field: 'profesor', 'error')} required">
 	<label for="profesor">
 		<g:message code="clase.profesor.label" default="Profesor" />

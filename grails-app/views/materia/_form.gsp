@@ -18,12 +18,12 @@
 	<g:textField name="nombre" value="${materiaInstance?.nombre}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: materiaInstance, field: 'grado', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: materiaInstance, field: 'grado', 'error')} required">
 	<label for="grado">
 		<g:message code="materia.grado.label" default="Grado" />
-		
+		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="grado" value="${materiaInstance?.grado}"/>
+	<g:field name="grado" type="number" value="${materiaInstance.grado}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: materiaInstance, field: 'carrera', 'error')} required">
@@ -46,6 +46,23 @@
 </g:each>
 <li class="add">
 <g:link controller="cicloMateria" action="create" params="['materia.id': materiaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'cicloMateria.label', default: 'CicloMateria')])}</g:link>
+</li>
+</ul>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: materiaInstance, field: 'clases', 'error')} ">
+	<label for="clases">
+		<g:message code="materia.clases.label" default="Clases" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${materiaInstance?.clases?}" var="c">
+    <li><g:link controller="clase" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="clase" action="create" params="['materia.id': materiaInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'clase.label', default: 'Clase')])}</g:link>
 </li>
 </ul>
 

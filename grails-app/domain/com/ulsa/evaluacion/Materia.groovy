@@ -7,7 +7,7 @@ class Materia {
 	int grado
 	
 	static belongsTo = [carrera:Carrera]
-	static hasMany = [cicloMaterias: CicloMateria]
+	static hasMany = [cicloMaterias: CicloMateria, clases: Clase]
 	
 	
 	static constraints = {

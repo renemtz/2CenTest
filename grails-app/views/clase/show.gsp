@@ -61,6 +61,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${claseInstance?.profe}">
+				<li class="fieldcontain">
+					<span id="profe-label" class="property-label"><g:message code="clase.profe.label" default="Profe" /></span>
+					
+						<span class="property-value" aria-labelledby="profe-label"><g:link controller="profesor" action="show" id="${claseInstance?.profe?.id}">${claseInstance?.profe?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${claseInstance?.profesor}">
 				<li class="fieldcontain">
 					<span id="profesor-label" class="property-label"><g:message code="clase.profesor.label" default="Profesor" /></span>

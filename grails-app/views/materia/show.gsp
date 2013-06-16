@@ -70,6 +70,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${materiaInstance?.clases}">
+				<li class="fieldcontain">
+					<span id="clases-label" class="property-label"><g:message code="materia.clases.label" default="Clases" /></span>
+					
+						<g:each in="${materiaInstance.clases}" var="c">
+						<span class="property-value" aria-labelledby="clases-label"><g:link controller="clase" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form>
 				<fieldset class="buttons">

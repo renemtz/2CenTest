@@ -30,6 +30,8 @@
 					
 						<th><g:message code="clase.materia.label" default="Materia" /></th>
 					
+						<th><g:message code="clase.profe.label" default="Profe" /></th>
+					
 						<th><g:message code="clase.profesor.label" default="Profesor" /></th>
 					
 					</tr>
@@ -43,6 +45,8 @@
 						<td>${fieldValue(bean: claseInstance, field: "grupo")}</td>
 					
 						<td>${fieldValue(bean: claseInstance, field: "materia")}</td>
+					
+						<td>${fieldValue(bean: claseInstance, field: "profe")}</td>
 					
 						<td>${fieldValue(bean: claseInstance, field: "profesor")}</td>
 					
