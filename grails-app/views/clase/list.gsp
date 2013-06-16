@@ -30,8 +30,6 @@
 					
 						<th><g:message code="clase.materia.label" default="Materia" /></th>
 					
-						<th><g:message code="clase.profe.label" default="Profe" /></th>
-					
 						<th><g:message code="clase.profesor.label" default="Profesor" /></th>
 					
 					</tr>
@@ -42,13 +40,11 @@
 					
 						<td><g:link action="show" id="${claseInstance.id}">${fieldValue(bean: claseInstance, field: "evaluacion")}</g:link></td>
 					
-						<td>${fieldValue(bean: claseInstance, field: "grupo")}</td>
+						<td><g:link action="show" id="${claseInstance.id}">${fieldValue(bean: claseInstance, field: "grupo")}</g:link></td>
 					
-						<td>${fieldValue(bean: claseInstance, field: "materia")}</td>
+						<td><g:link action="show" id="${claseInstance.id}">${fieldValue(bean: claseInstance, field: "materia")}</g:link></td>
 					
-						<td>${fieldValue(bean: claseInstance, field: "profe")}</td>
-					
-						<td>${fieldValue(bean: claseInstance, field: "profesor")}</td>
+						<td><g:link action="show" id="${claseInstance.id}">${fieldValue(bean: claseInstance, field: "profesor")}</g:link></td>
 					
 					</tr>
 				</g:each>
