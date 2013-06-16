@@ -108,8 +108,9 @@ class EvaluacionController {
 		
 	}
 	
-	def actualizarCiclos(){
-
+	def actualizarGrupos(){
+		System.out.println(params)
+		render(template: "comboGrupo", model: [grupos: Evaluacion.list()])
 	}
 	
 	def save_evaluacion() {
