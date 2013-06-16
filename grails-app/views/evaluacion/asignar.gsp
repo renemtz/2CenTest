@@ -54,7 +54,10 @@
 					<g:select id="evaluacion" name="evaluacion.id"
 						from="${com.ulsa.evaluacion.Evaluacion.list()}" optionKey="id"
 						required="" value="${claseInstance?.evaluacion?.id}"
-						class="many-to-one" onClick="cargarMaterias();" />
+						class="many-to-one"
+						onchange="${remoteFunction(action: 'actualizarGrupos',
+                       update: 'combogrupo',
+                       params: '\'carrera=\' + carrera.value+\'&ciclo=\' + ciclo.value+\'&evaluacion=\' + this.value')}"/>
 				</div>
 
 				<div
@@ -64,7 +67,10 @@
 					</label>
 					<g:select id="ciclo" name="ciclo.id"
 						from="${com.ulsa.evaluacion.Ciclo.list()}" optionKey="id"
-						required="" value="${claseInstance?.ciclo?.id}" />
+						required="" value="${claseInstance?.ciclo?.id}" 
+						onchange="${remoteFunction(action: 'actualizarGrupos',
+                       update: 'combogrupo',
+                       params: '\'ciclo=\' + this.value+\'&carrera=\' + carrera.value+\'&evaluacion=\' + evaluacion.value')}" />
 				</div>
 
 
@@ -78,22 +84,13 @@
 						required="" value="${claseInstance?.carrera?.id}"
 						onchange="${remoteFunction(action: 'actualizarGrupos',
                        update: 'combogrupo',
-                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}" />
+                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value+\'&evaluacion=\' + evaluacion.value')}" />
 				</div>
 				
 				<g:render template="comboGrupo" />
 
 
-				<div
-					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'clases', 'error')} ">
-					<label for="clases"> <g:message code="grupo.clases.label"
-							default="Clases" />
-
-					</label>
-					<g:select name="clasesaasignar" from="${com.ulsa.evaluacion.Clase.list()}"
-						multiple="multiple" optionKey="id" size="5"
-						value="${grupoInstance?.clase*.id}" class="many-to-one" />
-				</div>
+				<g:render template="clasesaAsignar" />
 
 
 				<div

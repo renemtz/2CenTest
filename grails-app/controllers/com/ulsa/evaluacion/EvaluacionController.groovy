@@ -110,7 +110,45 @@ class EvaluacionController {
 	
 	def actualizarGrupos(){
 		System.out.println(params)
-		render(template: "comboGrupo", model: [grupos: Evaluacion.list()])
+		def grupos = new ArrayList()
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Grupo.createCriteria()
+			if (criterio) {
+				grupos = criterio.listDistinct {
+					carrera {
+						eq 'id', Long.parseLong(params.carrera)
+					}
+					and {
+						ciclo {
+							eq 'id', Long.parseLong(params.ciclo)
+						}
+					}
+				}
+			}
+		}
+		render(template: "comboGrupo", model: [grupos: grupos])
+	}
+	
+	def actualizarClasesAsignar(){
+		System.out.println(params)
+		//def clases
+		
+		if(!params.grupo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clases = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+					and{
+						isNull("evaluacion")
+					}
+				}
+			}
+		}
+		System.out.println("entra "+(clases!=null?clases.size():"0"))
+		
+		render(template: "clasesaAsignar", model: [clases: clases])
 	}
 	
 	def save_evaluacion() {

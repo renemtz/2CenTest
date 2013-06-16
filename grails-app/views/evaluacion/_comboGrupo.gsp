@@ -3,6 +3,10 @@
 							default="Grupo" /> <!--<span class="required-indicator">*</span>-->
 					</label>
 					<g:select id="grupo" name="clase.id"
+					noSelection="['':'Seleccione una grupo']"
 						from="${grupos}" optionKey="id"
-						required="" value="${claseInstance?.grupo?.id}" />
+						required="" value="${claseInstance?.grupo?.id}" 
+						onchange="${remoteFunction(action: 'actualizarClasesAsignar',
+                       update: 'clasesaasignar',
+                       params: '\'grupo=\' + this.value')}"/>
 </div>
