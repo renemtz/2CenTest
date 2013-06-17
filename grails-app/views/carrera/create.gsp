@@ -5,6 +5,18 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'carrera.label', default: 'Carrera')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+			function validar() {
+				if ($('#clave').val()=="") {
+					alert('clave');
+				} else if ($('#nombre').val()=="") {
+					alert('nombre');
+				} else {
+					$('#formulario').submit();
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<a href="#create-carrera" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -26,12 +38,12 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="save" >
+			<g:form id="formulario" name="formulario" action="save" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+					<input type="button" value="Crear" onClick="validar()"/> 
 				</fieldset>
 			</g:form>
 		</div>

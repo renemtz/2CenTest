@@ -5,6 +5,31 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'alumno.label', default: 'Alumno')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+			function generar() {
+				${remoteFunction(action: 'generarContrasena',
+	                       update: 'divContrasena')}
+			}
+
+			function validar() {
+				if ($('#matricula').val()=="") {
+					alert('matricula');
+				} else if ($('#nombre').val()=="") {
+					alert('nombre');
+				}  else if ($('#paterno').val()=="") {
+					alert('paterno');
+				}  else if ($('#materno').val()=="") {
+					alert('materno');
+				}  else if ($('#contrasena').val()=="") {
+					alert('contrasena');
+				}  else if ($('#email').val()=="") {
+					alert('email');
+				} else {
+					$('#formulario').submit();
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<a href="#edit-alumno" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
