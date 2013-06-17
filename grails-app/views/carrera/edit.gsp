@@ -5,6 +5,18 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'carrera.label', default: 'Carrera')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script>
+			function validar() {
+				if ($('#clave').val()=="") {
+					alert('clave');
+				} else if ($('#nombre').val()=="") {
+					alert('nombre');
+				} else {
+					$('#formulario').submit();
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<a href="#edit-carrera" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

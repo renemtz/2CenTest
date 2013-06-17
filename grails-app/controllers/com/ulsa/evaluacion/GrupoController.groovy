@@ -157,7 +157,7 @@ class GrupoController {
 
 		render(template: "semestres", model: [carrera: carrera, semestres:semestres])
 	}
-	
+
 
 	private void ordenar(ArrayList vector) {
 
@@ -214,11 +214,11 @@ class GrupoController {
 									render(view: "list")
 									return
 								}
-								
+
 							}
 						}
 					}
-					
+
 				}
 				ciclo.addToGrupos(grupo)
 				carrera.addToGrupos(grupo)
@@ -239,5 +239,33 @@ class GrupoController {
 
 		redirect(action: "list")
 
+	}
+
+	def inscribir() {
+
+	}
+
+	def actualizarGrupos() {
+		System.out.println(params)
+
+		def grupos
+		def carrera = null
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			carrera = Carrera.get(Long.parseLong(params.carrera))
+			def ciclo = Ciclo.get(Long.parseLong(params.ciclo))
+			
+			grupos = Grupo.findAll("from Grupo as grupo where ciclo.id = :idCiclo and carrera.id = :idCarrera",
+				[idCiclo: Long.parseLong(params.ciclo), idCarrera: Long.parseLong(params.carrera)])
+
+
+		}
+		System.out.println("tamano "+(grupos!=null?grupos.size():"0"))
+
+		render(template: "combogrupo", model: [carrera: carrera, grupos:grupos])
+	}
+	
+	def actualizarAlumnos() {
+		
+		render(template: "multiSelectAlumnos", model: [carrera: carrera, grupos:grupos])
 	}
 }
