@@ -7,6 +7,6 @@
 						from="${grupos}" optionKey="id"
 						required="" value="${claseInstance?.grupo?.id}" 
 						onchange="${remoteFunction(action: 'actualizarClasesAsignar',
-                       update: 'clasesaasignar',
-                       params: '\'grupo=\' + this.value')}"/>
+                        update: 'wrapper',
+                        params: '\'grupo=\' + this.value+\'&evaluacion=\' + evaluacion.value')}"/>
 </div>

@@ -151,6 +151,34 @@ class EvaluacionController {
 		render(template: "clasesaAsignar", model: [clases: clases])
 	}
 	
+	def actualizarClasesAsignadas(){
+		System.out.println(params)
+		def clases
+		
+		if(!params.grupo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clases = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+					and {
+						evaluacion{
+							eq 'id', Long.parseLong(params.evaluacion)
+						}
+					}
+				}
+			}
+		}
+		System.out.println("entra "+(clases!=null?clases.size():"0"))
+		
+		render(template: "clasesAsignadas", model: [clases: clases])
+	}
+	
+	def pasarClases(){
+		System.out.println(params)
+	}
+	
 	def save_evaluacion() {
 		System.out.println(params)
 		def evaluacion = new Evaluacion(clave: params.clave, nombre: params.nombre, descripcion:params.descripcion)

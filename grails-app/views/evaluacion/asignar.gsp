@@ -3,12 +3,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Asignar Evaluaciones</title>
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <meta name="layout" content="main">
 <script>
 	
 </script>
 <link rel="stylesheet" type="text/css" href="estilo.css" />
+<link rel="stylesheet" href="cssms/common.css" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
+	<link type="text/css" href="cssms/ui.multiselect.css" rel="stylesheet" />
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="jsms/plugins/localisation/jquery.localisation-min.js"></script>
+	<script type="text/javascript" src="jsms/plugins/scrollTo/jquery.scrollTo-min.js"></script>
+	<script type="text/javascript" src="jsms/ui.multiselect.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.localise('ui-multiselect', {/*language: 'en',*/ path: 'jsms/locale/'});
+			$(".multiselect").multiselect();
+			$('#switcher').themeswitcher();
+		});
+	</script>
 </head>
 <body>
 	<a href="#edit-clase" class="skip" tabindex="-1"><g:message
@@ -89,21 +103,8 @@
 				
 				<g:render template="comboGrupo" />
 
-
 				<g:render template="clasesaAsignar" />
-
-
-				<div
-					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'clases', 'error')} ">
-					<label for="clases"> <g:message code="grupo.clases.label"
-							default="Clases" />
-
-					</label>
-					<g:select name="clases" from="${com.ulsa.evaluacion.Clase.list()}"
-						multiple="multiple" optionKey="id" size="5"
-						value="${grupoInstance?.clase*.id}" class="many-to-one" />
-				</div>
-
+				
 			</fieldset>
 
 			<fieldset class="buttons">
