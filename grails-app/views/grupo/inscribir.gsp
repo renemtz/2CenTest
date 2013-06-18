@@ -9,6 +9,40 @@
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script language="Javascript">
+			function SelectMoveRows(SS1, SS2) {
+				var SelID = '';
+				var SelText = '';
+				// Move rows from SS1 to SS2 from bottom to top
+				for (i = SS1.options.length - 1; i >= 0; i--) {
+					if (SS1.options[i].selected == true) {
+						SelID = SS1.options[i].value;
+						SelText = SS1.options[i].text;
+						var newRow = new Option(SelText, SelID);
+						SS2.options[SS2.length] = newRow;
+						SS1.options[i] = null;
+					}
+				}
+				SelectSort(SS2);
+			}
+			function SelectSort(SelList) {
+				var ID = '';
+				var Text = '';
+				for (x = 0; x < SelList.length - 1; x++) {
+					for (y = x + 1; y < SelList.length; y++) {
+						if (SelList[x].text > SelList[y].text) {
+							// Swap rows
+							ID = SelList[x].value;
+							Text = SelList[x].text;
+							SelList[x].value = SelList[y].value;
+							SelList[x].text = SelList[y].text;
+							SelList[y].value = ID;
+							SelList[y].text = Text;
+						}
+					}
+				}
+			}
+		</script>
 
 <script>
 			var semestre="";
@@ -58,7 +92,7 @@
 				}
 				//alert(element.childNodes);
 				if (pasa) {
-					$("#formulario").submit();
+					$("#Example").submit();
 				} else {
 					alert("Todos los campos deben estar completos");
 				}
@@ -96,7 +130,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form action="save_grupo" id="formulario" name="formulario">
+		<g:form action="save_inscripciones" id="Example" name="Example">
 			<fieldset class="form">
 				<div
 					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'ciclo', 'error')} required">

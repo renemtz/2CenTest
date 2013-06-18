@@ -269,4 +269,9 @@ class GrupoController {
 		def alumnos = Alumno.list()
 		render(template: "multiSelectAlumnos", model: [alumnos: alumnos])
 	}
+	
+	def save_inscripciones() {
+		System.out.println('save_inscripciones')
+		System.out.println(params)
+	}
 }

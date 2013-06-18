@@ -142,4 +142,13 @@ class AlumnoController {
 	def cambiarContrasena() {
 		
 	}
+	
+	def verificarUsuario() {
+		if (params.login.equals("admin") && params.password.equals("admin")) { //Si el usuario es administrador
+			
+		} else { //puede que el usuario sea un alumno
+		
+		}
+		System.out.println(params)
+	}
 }

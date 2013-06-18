@@ -13,7 +13,7 @@
 	<div class="container">
 	  <div class="login">
 	    <h1>Login</h1>
-	    <form method="post" action="">
+	    <form method="post" action="verificarUsuario">
 	      <p><input type="text" name="login" value="" placeholder="Usuario"></p>
 	      <p><input type="password" name="password" value="" placeholder="Contraseña"></p>
 	      <p class="remember_me">
