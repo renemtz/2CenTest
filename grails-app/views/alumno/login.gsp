@@ -22,6 +22,9 @@
 	      <p class="submit"><input type="submit" name="commit" value="Login"></p>
 	    </form>
 	  </div>
+	  <g:if test="${session.error}">
+	  		${session.error}
+	  </g:if>
 	 
 	  <div class="login-help">
 	    <p>Olvidaste tu contraseña? <a href="#">Click aqui para resetear</a>.</p>
