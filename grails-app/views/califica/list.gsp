@@ -39,7 +39,7 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${calificaInstance.id}">${fieldValue(bean: calificaInstance, field: "alumno")}</g:link></td>
-					<td>${fieldValue(bean: calificaInstance, field: "id")}</td>
+					
 						
 						<td>${fieldValue(bean: calificaInstance, field: "clase")}</td>
 					

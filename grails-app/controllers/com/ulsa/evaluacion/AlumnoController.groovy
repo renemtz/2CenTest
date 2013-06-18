@@ -144,20 +144,22 @@ class AlumnoController {
 	}
 	
 	def verificarUsuario() {
-		def alumno
-		if (params.login.equals("admin") && params.password.equals("admin")) { //Si el usuario es administrador
-			redirect(action: "show", id: id)
-		} else { //puede que el usuario sea un alumno
-			alumno = Alumno.findByMatriculaAndContrasena(params.login, params.password)
-		}
-		if (alumno) {
-			session.alumno = alumno
-			redirect(action: "inicio", alumno: alumno)
-		} else {
 		
-			session.error="Usuario y/o contraseña incorrectos"
-			redirect(action: "login", alumno: null)
+		if (params.login.equals("admin") && params.password.equals("admin")) { //Si el usuario es administrador
+			session.admin = true
+			redirect(action: "inicioAdmin")
+		} else { //puede que el usuario sea un alumno
+			def alumno = Alumno.findByMatriculaAndContrasena(params.login, params.password)
+			if (alumno) {
+				session.alumno = alumno
+				redirect(action: "inicio", alumno: alumno)
+			} else {
+			
+				session.error="Usuario y/o contraseña incorrectos"
+				redirect(action: "login")
+			}
 		}
+		
 	}
 	
 	def inicio() {
@@ -186,7 +188,7 @@ class AlumnoController {
 			}
 			
 			//Evaluacion pertenece al alumno y a la clase
-			System.out.println("Número de clases "+clases.size)
+			System.out.println("Número de clases "+clases.size +" num evaluaciones "+evaluacion.size)
 			[clases: clases, evaluaciones: evaluacion]
 			
 		} else {
