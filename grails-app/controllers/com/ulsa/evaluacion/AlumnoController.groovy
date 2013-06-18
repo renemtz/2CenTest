@@ -170,10 +170,16 @@ class AlumnoController {
 			
 			alumno = Alumno.findById(alumno.id)
 			def clases= new ArrayList()
+			def evaluacion = new ArrayList()
+			
 			for (Grupo g in alumno.grupos) {
 				def clasesDelGrupo = Clase.findAllByGrupo(g)
 				for (Clase c in clasesDelGrupo) {
-					
+					if (c.evaluacion==null) { //verificamos si existe alguna evaluación para la clase
+						evaluacion.add("2")
+					} else { //verificamos si ya se ha contestado la evaluación
+						evaluacion.add( Califica.findByClaseAndAlumno(c, alumno)!=null?"1":"0")
+					}
 					clases.add(c)
 				}
 				
@@ -181,7 +187,7 @@ class AlumnoController {
 			
 			//Evaluacion pertenece al alumno y a la clase
 			System.out.println("Número de clases "+clases.size)
-			[clases: clases]
+			[clases: clases, evaluaciones: evaluacion]
 			
 		} else {
 			session.error="Debes iniciar sesión"
