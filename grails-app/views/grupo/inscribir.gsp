@@ -5,9 +5,10 @@
 <meta name="layout" content="main">
 <g:set var="entityName"
 	value="${message(code: 'grupo.label', default: 'Grupo')}" />
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
 <title><g:message code="default.create.label"
 		args="[entityName]" /></title>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <script>
 			var semestre="";
@@ -63,6 +64,7 @@
 				}
 			}
 		</script>
+
 </head>
 <body>
 	<a href="#create-grupo" class="skip" tabindex="-1"><g:message
@@ -127,6 +129,8 @@
 				</div>
 
 				<g:render template="combogrupo" />
+				<g:render template="multiSelectAlumnos" />
+
 
 			</fieldset>
 			<fieldset class="buttons">

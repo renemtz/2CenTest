@@ -242,7 +242,7 @@ class GrupoController {
 	}
 
 	def inscribir() {
-
+		
 	}
 
 	def actualizarGrupos() {
@@ -265,7 +265,8 @@ class GrupoController {
 	}
 	
 	def actualizarAlumnos() {
-		
-		render(template: "multiSelectAlumnos", model: [carrera: carrera, grupos:grupos])
+		System.out.println("actualizarAlumnos")
+		def alumnos = Alumno.list()
+		render(template: "multiSelectAlumnos", model: [alumnos: alumnos])
 	}
 }
