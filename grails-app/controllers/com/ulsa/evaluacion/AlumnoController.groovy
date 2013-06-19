@@ -138,42 +138,43 @@ class AlumnoController {
 
 		render (template: 'contrasena', model: [contrasena: pswd])
 	}
-	
+
 	def cambiarContrasena() {
-		
 	}
-	
+
 	def verificarUsuario() {
-		
-		if (params.login.equals("admin") && params.password.equals("admin")) { //Si el usuario es administrador
+
+		if (params.login.equals("admin") && params.password.equals("admin")) {
+			//Si el usuario es administrador
 			session.admin = true
 			redirect(action: "inicioAdmin")
-		} else { //puede que el usuario sea un alumno
+		} else {
+			//puede que el usuario sea un alumno
 			def alumno = Alumno.findByMatriculaAndContrasena(params.login, params.password)
 			if (alumno) {
 				session.alumno = alumno
 				redirect(action: "inicio", alumno: alumno)
 			} else {
-			
+
 				session.error="Usuario y/o contraseña incorrectos"
 				redirect(action: "login")
 			}
 		}
-		
+
 	}
-	
+
 	def inicio() {
 		if (session.alumno!=null){
 			//Buscamos las clases a las que el alumno está asignado
 			def alumno = session.alumno
-			
+
 			System.out.println("El id del alumno es "+alumno.id+alumno.nombre)
-			
-			
+
+
 			alumno = Alumno.findById(alumno.id)
 			def clases= new ArrayList()
 			def evaluacion = new ArrayList()
-			
+
 			for (Grupo g in alumno.grupos) {
 				def clasesDelGrupo = Clase.findAllByGrupo(g)
 				for (Clase c in clasesDelGrupo) {
@@ -184,20 +185,44 @@ class AlumnoController {
 					}
 					clases.add(c)
 				}
-				
+
 			}
-			
+
 			//Evaluacion pertenece al alumno y a la clase
 			System.out.println("Número de clases "+clases.size +" num evaluaciones "+evaluacion.size)
 			[clases: clases, evaluaciones: evaluacion]
-			
+
 		} else {
 			session.error="Debes iniciar sesión"
 			redirect(action: "login", alumno: null)
 		}
 	}
-	
+
 	def inicioAdmin(){
-		
+
 	}
+
+	def save_nueva_contrasena() {
+		System.out.println(params)
+		Alumno alumno = session.alumno
+		if (alumno) {
+			if (alumno.contrasena.equals(params.contrasena)) {
+				alumno.contrasena = params.contrasena
+				
+				
+				if(alumno.save()) {
+					session.mensaje="La contraseña se ha cambiado correctamente"
+					redirect(action: "inicio")
+				}
+
+			} else {
+				session.error="La contraseña ingresada es incorrecta"
+				flash.message = message(code: 'La contraseña ingresada es incorrecta')
+				redirect(action: "cambiarContrasena")
+			}
+		}
+	}
+	
+	
+
 }

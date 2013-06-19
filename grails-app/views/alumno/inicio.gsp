@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main">
+<meta name="layout" content="alumno">
 <g:set var="entityName"
 	value="${message(code: 'alumno.label', default: 'Alumno')}" />
 <title>Evaluación</title>
@@ -24,12 +24,16 @@
 				code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message
+				<li><a class="home" href="${createLink(uri: '/alumno/inicio')}"><g:message
 							code="default.home.label" /></a></li>
-				<li><g:link class="list" action="list">
-						<g:message code="default.list.label" args="[entityName]" />
-					</g:link></li>
+				<li><a href="${createLink(uri: '/alumno/login')}">Cerrar Sesión</a></li>
+				
 			</ul>
+		</div>
+		<div id="cambiarContrasena" style="float:right;">
+			<br>
+			<a href="/2CenTest/alumno/cambiarContrasena">Cambiar contraseña</a>
+			<br>
 		</div>
 
 		<g:form id="formulario" name="formulario" action="save">

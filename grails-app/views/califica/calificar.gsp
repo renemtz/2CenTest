@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main">
+<meta name="layout" content="alumno">
 <g:set var="entityName"
 	value="${message(code: 'califica.label', default: 'Califica')}" />
 <title><g:message code="default.create.label"
@@ -36,7 +36,9 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/alumno/inicio')}"><g:message
-							code="Inicio" /></a></li>
+							code="default.home.label" /></a></li>
+				<li><a class="home" href="${createLink(uri: '/alumno/login')}"><g:message
+							code="Salir" /></a></li>
 				
 			</ul>
 		</div>
@@ -81,7 +83,7 @@
 				</table>
 			</fieldset>
 			<fieldset class="buttons">
-				<input type="button" name="create" class="save" value="Crear"
+				<input type="button" name="create" class="save" value="Evaluar"
 					onClick="validar()" />
 			</fieldset>
 		</g:form>
