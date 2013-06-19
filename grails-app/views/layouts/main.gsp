@@ -23,8 +23,14 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+	
+	
+
 <g:layoutHead />
 <r:layoutResources />
+
+
+
 </head>
 <body>
 
@@ -79,6 +85,9 @@
 										width="25" height="25"/>&nbsp;&nbsp;&nbsp;Salir </a></li>
 		</ul>
 	</div>
+	
+	
+	
 	<g:layoutBody />
 	
 	<div class="footer" role="contentinfo"></div>
