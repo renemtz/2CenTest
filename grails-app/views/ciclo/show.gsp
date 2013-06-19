@@ -46,7 +46,7 @@
 					<span id="cicloMaterias-label" class="property-label"><g:message code="ciclo.cicloMaterias.label" default="Ciclo Materias" /></span>
 					
 						<g:each in="${cicloInstance.cicloMaterias}" var="c">
-						<span class="property-value" aria-labelledby="cicloMaterias-label"><g:link controller="ciclo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="cicloMaterias-label"><g:link controller="cicloMateria" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

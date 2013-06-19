@@ -10,4 +10,8 @@ class Grupo {
 		nombre nullable:false
     }
 	
+	String toString() {
+		"${id} ${nombre}"
+	}
+	
 }

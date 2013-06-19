@@ -23,7 +23,16 @@
 		<g:message code="ciclo.cicloMaterias.label" default="Ciclo Materias" />
 		
 	</label>
-	<g:select name="cicloMaterias" from="${com.ulsa.evaluacion.Ciclo.list()}" multiple="multiple" optionKey="id" size="5" value="${cicloInstance?.cicloMaterias*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${cicloInstance?.cicloMaterias?}" var="c">
+    <li><g:link controller="cicloMateria" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="cicloMateria" action="create" params="['ciclo.id': cicloInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'cicloMateria.label', default: 'CicloMateria')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: cicloInstance, field: 'descripcion', 'error')} ">

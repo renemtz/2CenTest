@@ -14,5 +14,9 @@ class Clase {
 		materia nullable: true
 		grupo nullable: true
     }
+	
+	String toString() {
+		"${id} ${materia}"
+	}
 
 }

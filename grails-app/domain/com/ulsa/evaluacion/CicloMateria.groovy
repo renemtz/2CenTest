@@ -6,4 +6,8 @@ class CicloMateria {
 
     static constraints = {
     }
+	
+	String toString() {
+		"${materias} ${ciclos}"
+	}
 }

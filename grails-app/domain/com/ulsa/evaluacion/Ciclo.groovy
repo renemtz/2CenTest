@@ -5,7 +5,7 @@ class Ciclo {
 	String nombre
 	String descripcion
 	
-	static hasMany = [grupos: Grupo, cicloMaterias: Ciclo]
+	static hasMany = [grupos: Grupo, cicloMaterias: CicloMateria]
 
     static constraints = {
 		clave nullable:false, blank: false
@@ -13,6 +13,6 @@ class Ciclo {
     }
 	
 	String toString() {
-		"${clave}"
+		"${clave} ${nombre}"
 	}
 }

@@ -23,7 +23,7 @@
 		<g:message code="materia.grado.label" default="Grado" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="grado" type="number" value="${materiaInstance.grado}" required=""/>
+	<g:field name="grado" type="number" value="${materiaInstance.grado}" min="1" max="10" value="1" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: materiaInstance, field: 'carrera', 'error')} required">
