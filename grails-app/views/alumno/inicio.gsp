@@ -30,6 +30,11 @@
 				
 			</ul>
 		</div>
+		<g:if test="${flash.message}">
+			<div class="message" role="status">
+				${flash.message}
+			</div>
+		</g:if>
 		<div id="cambiarContrasena" style="float:right;">
 			<br>
 			<a href="/2CenTest/alumno/cambiarContrasena">Cambiar contraseña</a>

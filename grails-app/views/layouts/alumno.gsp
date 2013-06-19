@@ -29,7 +29,7 @@
 <body>
 
 	<div id="grailsLogo" role="banner">
-		<a href="http://grails.org"><img
+		<a href="http://www.ulsaoaxaca.edu.mx"><img
 			src="${resource(dir: 'Imagenes', file: 'logo.png')}" alt="Grails" /></a>
 			
 	</div>

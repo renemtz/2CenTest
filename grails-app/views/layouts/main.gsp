@@ -23,13 +23,19 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+	
+	
+
 <g:layoutHead />
 <r:layoutResources />
+
+
+
 </head>
 <body>
 
 	<div id="grailsLogo" role="banner">
-		<a href="http://grails.org"><img
+		<a href="http://www.ulsaoaxaca.edu.mx"><img
 			src="${resource(dir: 'Imagenes', file: 'logo.png')}" alt="Grails" /></a>
 	</div>
 	
@@ -79,6 +85,9 @@
 										width="25" height="25"/>&nbsp;&nbsp;&nbsp;Salir </a></li>
 		</ul>
 	</div>
+	
+	
+	
 	<g:layoutBody />
 	
 	<div class="footer" role="contentinfo"></div>
