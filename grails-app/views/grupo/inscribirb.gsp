@@ -99,7 +99,9 @@ function selecciona(id)
 			<g:hiddenField name="version" value="${claseInstance?.version}" />
 
 			<fieldset class="form">
-
+				Buscar por nombre: <input type="text" onkeyup="${remoteFunction(action: 'actualizarAlumnos',
+                        update: 'alumnosD',
+                        params: '\'nombre=\' + this.value+\'&grupoasi=\' + grupoasi.value')}">
 				<div
 					class="fieldcontain ${hasErrors(bean: claseInstance, field: 'ciclo', 'error')} required">
 					<label for="ciclo"> <g:message code="clase.ciclo.label"
@@ -127,9 +129,7 @@ function selecciona(id)
                        params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}" />
 				</div>
 				<g:render template="comboGrupo2" />
-				<input type="text" onkeyup="${remoteFunction(action: 'actualizarAlumnos',
-                        update: 'alumnosD',
-                        params: '\'nombre=\' + this.value+\'&grupoasi=\' + grupoasi.value')}">
+				
 				
 				------------------------------------------------------------------------------------------------
 				

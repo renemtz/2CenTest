@@ -305,7 +305,7 @@ class GrupoController {
 		def alumnos = new ArrayList()
 		
 		
-		if(!params.nombre== null) {
+		if(params.nombre && !params.nombre.equals("")) {
 				alumnos = Alumno.findAllByNombreLike("%"+params.nombre+"%")
 		}else if(!params.grupo.equals("")) {
 			def criterio = Alumno.createCriteria()
