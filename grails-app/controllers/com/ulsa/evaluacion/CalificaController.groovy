@@ -199,4 +199,48 @@ class CalificaController {
 		[contestado: porcentajeContestado, sincontestar: porcentajeSinContestar] 
 	}
 	
+	def actualizarMostrarClases() {
+		System.out.println(params)
+		def clases
+
+		if(!params.grupo.equals("") && !params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clases = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+					materia { order("nombre", "desc") }
+				}
+			}
+		}
+		System.out.println("entra "+(clases!=null?clases.size():"0"))
+
+		render(template: "mostrarClases", model: [clases: clases])
+	}
+	
+	def actualizarGrupos() {
+		System.out.println(params)
+		def grupos
+
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Grupo.createCriteria()
+			if (criterio) {
+				grupos = criterio.listDistinct {
+					carrera {
+						eq 'id', Long.parseLong(params.carrera)
+					}
+					and {
+						ciclo {
+							eq 'id', Long.parseLong(params.ciclo)
+						}
+					}
+				}
+			}
+		}
+		System.out.println("entra "+(grupos!=null?grupos.size():"0"))
+
+		render(template: "comboGrupo", model: [grupos: grupos])
+	}
+	
 }

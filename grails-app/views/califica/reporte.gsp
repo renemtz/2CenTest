@@ -41,6 +41,7 @@
 						<div class="chart-wrapper">
 							<div id="chart"></div>
 						</div>
+						
 						<script>
 						function createChart() {
 							$("#chart")
@@ -50,7 +51,7 @@
 														"kendoSkin")
 														|| "default",
 												title : {
-													text : "Break-up of Spain Electricity Production for 2008"
+													text : "Porcentaje de preguntas contestadas (todos los alumnos)"
 												},
 												legend : {
 													position : "bottom",
@@ -100,6 +101,45 @@
 				<g:else>
 					Debe asignar una evaluación para ver este reporte
 				</g:else>
+				
+				<div
+					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'ciclo', 'error')} required">
+					<label for="ciclo"> <g:message code="grupo.ciclo.label"
+							default="Ciclo escolar" /> <span class="required-indicator">*</span>
+					</label>
+					<g:select id="ciclo" name="ciclo.id"
+						noSelection="['':'Seleccione un ciclo']"
+						from="${com.ulsa.evaluacion.Ciclo.list()}" optionKey="id"
+						required="" value="${grupoInstance?.ciclo?.id}"
+						class="many-to-one"
+						onchange="${remoteFunction(action: 'actualizarGrupos',
+                       update: 'comboGrupos',
+                       params: '\'ciclo=\' + this.value+\'&carrera=\' + carrera.value')}" 
+                       onclick="${remoteFunction(action: 'actualizarMostrarClases',
+                       update: 'mostrarClases',
+                       params: '\'grupo=\' + grupo.value+\'&ciclo=\' + this.value+\'&carrera=\' + carrera.value')}"/>
+				</div>
+
+				<div
+					class="fieldcontain ${hasErrors(bean: grupoInstance, field: 'carrera', 'error')} required">
+					<label for="carrera"> <g:message code="grupo.carrera.label"
+							default="Carrera" /> <span class="required-indicator">*</span>
+					</label>
+					<g:select id="carrera" name="carrera.id"
+						noSelection="['':'Seleccione una carrera']"
+						from="${com.ulsa.evaluacion.Carrera.list()}" optionKey="id"
+						required="" value="${grupoInstance?.carrera?.id}"
+						class="many-to-one"
+						onchange="${remoteFunction(action: 'actualizarGrupos',
+                       update: 'comboGrupos',
+                       params: '\'carrera=\' + this.value+\'&ciclo=\' + ciclo.value')}"
+						onclick="${remoteFunction(action: 'actualizarMostrarClases',
+                       update: 'mostrarClases',
+                       params: '\'grupo=\' + grupo.value+\'&ciclo=\' + ciclo.value+\'&carrera=\' + this.value')}" />
+				</div>
+
+				<g:render template="comboGrupo" />
+				<g:render template="mostrarClases" />
 			</fieldset>
 		</g:form>
 	</div>
