@@ -174,15 +174,13 @@ class CalificaController {
 		int numPreguntas = 0
 		for (Clase c in clases) {
 			numCalificaciones+=c.calificaciones.size()
-			System.out.println("alumnos "+c?.grupo?.alumnos?.size()+" ; preguntas "+c.evaluacion.preguntas.size())
 			numPreguntas += (c?.grupo?.alumnos?.size()*c.evaluacion.preguntas.size())
-			evaluaciones.add(c.evaluacion)
+			System.out.println("alumnos "+c.grupo.alumnos.size()+" ; preguntas "+c.evaluacion.preguntas.size())
+			//evaluaciones.add(c.evaluacion)
 		}
 		
-		
+		System.out.println("Contestadas: "+numCalificaciones +"; sin contestar "+numPreguntas)
 		//preguntas que se deben contestar
-		
-		
 		int porcentajeContestado=0
 		int porcentajeSinContestar=0
 		if (numPreguntas!=0) {
@@ -190,7 +188,7 @@ class CalificaController {
 			porcentajeSinContestar = 100-porcentajeContestado
 		}
 		
-		System.out.println("Contestadas: "+numCalificaciones +"; sin contestar "+numPreguntas)
+		
 		
 		[contestado: porcentajeContestado, sincontestar: porcentajeSinContestar]
 		
