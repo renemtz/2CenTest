@@ -155,44 +155,14 @@ class CalificaController {
 				}
 			}
 		}
+		flash.message = message(code: 'La evaluación se ha realizado correctamente')
 		redirect(controller: "alumno", action: "inicio")
 	}
 	
 	def reporte() {
-		//Buscamos el porcentaje de evaluaciones terminadas
-		def ultimoCiclo = Ciclo.last()
-		def cicloMateria = CicloMateria.findAllByCiclos(ultimoCiclo)
-		def clases = new ArrayList()
-		def evaluaciones = new ArrayList()
-		if (cicloMateria) {
-			for (CicloMateria cm in cicloMateria) {
-				clases.addAll(cm.materias.clases)
-			}
-		}
-		//preguntas contestadas
-		int numCalificaciones=0
-		int numPreguntas = 0
-		for (Clase c in clases) {
-			numCalificaciones+=c.calificaciones.size()
-			numPreguntas += (c?.grupo?.alumnos?.size()*c.evaluacion.preguntas.size())
-			System.out.println("alumnos "+c.grupo.alumnos.size()+" ; preguntas "+c.evaluacion.preguntas.size())
-			//evaluaciones.add(c.evaluacion)
-		}
-		
-		System.out.println("Contestadas: "+numCalificaciones +"; sin contestar "+numPreguntas)
-		//preguntas que se deben contestar
-		int porcentajeContestado=0
-		int porcentajeSinContestar=0
-		if (numPreguntas!=0) {
-			porcentajeContestado = (numCalificaciones*100)/numPreguntas
-			porcentajeSinContestar = 100-porcentajeContestado
-		}
+
 		
 		
-		
-		[contestado: porcentajeContestado, sincontestar: porcentajeSinContestar]
-		
-		/*
 		 //Buscamos el porcentaje de evaluaciones terminadas
 		def ultimoCiclo = Ciclo.last()
 		def cicloMateria = CicloMateria.findAllByCiclos(ultimoCiclo)
@@ -225,11 +195,8 @@ class CalificaController {
 		
 		System.out.println("Contestadas: "+numCalificaciones +"; sin contestar "+numPreguntas)
 		
+		
 		[contestado: porcentajeContestado, sincontestar: porcentajeSinContestar] 
-		  
-		  */
-		
-		
 	}
 	
 }

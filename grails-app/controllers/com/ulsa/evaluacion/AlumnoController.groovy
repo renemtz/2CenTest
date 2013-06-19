@@ -204,19 +204,22 @@ class AlumnoController {
 
 	def save_nueva_contrasena() {
 		System.out.println(params)
-		Alumno alumno = session.alumno
+		def alumno = Alumno.findById(session.alumno.id)
 		if (alumno) {
 			if (alumno.contrasena.equals(params.contrasena)) {
-				alumno.contrasena = params.contrasena
+				System.out.println("Equivalente")
 				
-				
-				if(alumno.save()) {
-					session.mensaje="La contraseña se ha cambiado correctamente"
+				alumno.setContrasena(params.nuevaContrasena)
+				if(alumno.save(flush: true)) {
+					System.out.println("Se guardó")
+					session.alumno = alumno
+					
+					flash.message = message(code: 'La contraseña se ha cambiado correctamente')
 					redirect(action: "inicio")
 				}
 
 			} else {
-				session.error="La contraseña ingresada es incorrecta"
+				
 				flash.message = message(code: 'La contraseña ingresada es incorrecta')
 				redirect(action: "cambiarContrasena")
 			}

@@ -36,7 +36,7 @@
 		<g:form action="save">
 			<fieldset class="form">
 				<h2>Porcentaje de preguntas contestadas</h2>
-				<g:if test="${contestado!=0 && sincontestar!=0}">
+				<g:if test="${!(contestado==0 && sincontestar==0)}">
 					<div id="example" class="k-content">
 						<div class="chart-wrapper">
 							<div id="chart"></div>

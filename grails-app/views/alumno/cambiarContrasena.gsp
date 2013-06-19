@@ -70,7 +70,8 @@
 							code="Contraseña actual" /> <span
 						class="required-indicator">*</span>
 					</label>
-					<g:textField name="contrasena" maxlength="15" value="${contrasena}"
+					
+					<g:passwordField name="contrasena" maxlength="15" value="${contrasena}"
 						required="" />
 				</div>
 				
@@ -80,7 +81,7 @@
 							code="Nueva contraseña" /> <span
 						class="required-indicator">*</span>
 					</label>
-					<g:textField name="nuevaContrasena" maxlength="15" value="${contrasena}"
+					<g:passwordField name="nuevaContrasena" maxlength="15" value="${contrasena}"
 						required="" />
 				</div>
 				
@@ -90,7 +91,7 @@
 							code="Repetir contraseña" /> <span
 						class="required-indicator">*</span>
 					</label>
-					<g:textField name="repetir" maxlength="15" value="${contrasena}"
+					<g:passwordField name="repetir" maxlength="15" value="${contrasena}"
 						required="" />
 				</div>
 			</fieldset>
