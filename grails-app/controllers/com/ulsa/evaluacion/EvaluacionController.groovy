@@ -219,6 +219,75 @@ class EvaluacionController {
 	}
 	
 	def asignarEvaluaciones(){
-			System.out.println(params)
+		System.out.println(params)
+		
+		//Buscamos las clases que deben estar agregadas para quitar las que actualmente no están
+		def clasesas
+		
+		if(!params.grupo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clasesas = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo.id)
+					}
+					and {
+						evaluacion{
+							eq 'id', Long.parseLong(params.evaluacion.id)
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		def evaluacion = Evaluacion.findById(Long.parseLong(params.evaluacion.id))
+		
+		def clases = params.list('FeatureCodes[]')
+		
+		
+		//Buscamos las clases que no estén en los parámetros pero que sí hayan estado registradas
+		boolean esta
+		if(clasesas) {
+			for (Clase c in clasesas) {
+				esta=false
+				for(String a in clases) {
+					if(c.id.toString().equals(a)) {
+						esta=true
+					}
+				}
+				if(!esta) { //Si la clase no está, debemos quitarla
+					//buscamos todas la clases que correspondan a la materia de la clase que queremos quitar
+					def clasesObj2 = Clase.findAllByMateria(c.materia)
+					for (Clase c1 in clasesObj2) {
+						evaluacion.removeFromClases(c1)
+					}
+					
+				}
+			}
+		}
+		
+		for (String a in clases) {
+			//recuperamos la clase a la que se le asignará la evaluación
+			def clase = Clase.findById(Long.parseLong(a))
+			//buscamos todas las clases de la materia de la clase que se recibió como parámetro; esto para ahorrar trabajo al usuario
+			//recordando que las evaluaciones se asignan a la materia y no a la clase
+			def clasesObj = Clase.findAllByMateria(clase.materia)
+			for (Clase c in clasesObj) {
+				evaluacion.addToClases(c)
+			}
+			
+		}
+		if(evaluacion.save()) {
+			System.out.println("Se guardo correctamente")
+		} else {
+			System.out.println("error")
+		}
+		redirect(controller: 'evaluacion', action: "asignar")
 	}
 }
