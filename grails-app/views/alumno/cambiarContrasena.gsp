@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="layout" content="main">
+<meta name="layout" content="alumno">
 <g:set var="entityName"
 	value="${message(code: 'alumno.label', default: 'Alumno')}" />
 <title><g:message code="default.create.label"
@@ -16,13 +16,17 @@
 
 			function validar() {
 				if ($('#contrasena').val()=="") {
-					alert('no hay contraseña');
+					alert('Debes llenar todos los campos');
 				} else if ($('#nuevaContrasena').val()=="") {
-					alert('nueva contraseña no ingresada');
+					alert('Debes llenar todos los campos');
+				} else if ($('#nuevaContrasena').val().length<5) {
+					alert('La contraseña debe ser igual o mayor a 5 caracteres');
+				} else if ($('#nuevaContrasena').val().length>15) {
+					alert('La contraseña debe ser menor a 15 caracteres');
 				} else if ($('#repetir').val()=="") {
-					alert('repetir no relleno');
+					alert('Debes llenar todos los campos');
 				} else if ($('#repetir').val()!=$('#nuevaContrasena').val()) {
-					alert('diferentes');
+					alert('Las contraseñas son diferentes');
 				} else {
 					$('#formulario').submit();
 				}
@@ -33,14 +37,13 @@
 	<a href="#create-alumno" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div class="nav" role="navigation">
-		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message
-						code="default.home.label" /></a></li>
-			<li><g:link class="list" action="list">
-					<g:message code="default.list.label" args="[entityName]" />
-				</g:link></li>
-		</ul>
-	</div>
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/alumno/inicio')}"><g:message
+							code="default.home.label" /></a></li>
+				<li><a href="${createLink(uri: '/alumno/login')}">Cerrar Sesión</a></li>
+				
+			</ul>
+		</div>
 	<div id="create-alumno" class="content scaffold-create" role="main">
 		<h1>
 			<g:message code="Cambiar contraseña" />
@@ -92,7 +95,7 @@
 				</div>
 			</fieldset>
 			<fieldset class="buttons">
-				<input type="button" value="Crear" onClick="validar()" />
+				<input type="button" value="Aceptar" onClick="validar()" />
 			</fieldset>
 		</g:form>
 	</div>

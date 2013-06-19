@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  	<meta name="layout" content="main">
+  	<meta name="layout" content="alumno">
     <meta charset='UTF-8'>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'estilo.css')}" type="text/css">
 <title>Login</title>
@@ -22,8 +22,12 @@
 	      <p class="submit"><input type="submit" name="commit" value="Login"></p>
 	    </form>
 	  </div>
+	  
 	  <g:if test="${session.error}">
 	  		${session.error}
+	  </g:if>
+	  <g:if test="${session.alumno}">
+	  		${session.invalidate()}
 	  </g:if>
 	 
 	  <div class="login-help">
