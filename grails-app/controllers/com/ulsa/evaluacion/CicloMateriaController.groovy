@@ -152,7 +152,6 @@ class CicloMateriaController {
 			}
 		}
 
-
 		render(template: "msMaterias", model: [ciclomaterias: noestan, materiasas: estan])
 	}
 

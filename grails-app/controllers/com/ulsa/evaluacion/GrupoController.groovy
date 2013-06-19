@@ -264,14 +264,90 @@ class GrupoController {
 		render(template: "combogrupo", model: [carrera: carrera, grupos:grupos])
 	}
 	
+	def actualizarGrupos2(){
+		System.out.println(params)
+		def grupos = new ArrayList()
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Grupo.createCriteria()
+			if (criterio) {
+				grupos = criterio.listDistinct {
+					carrera {
+						eq 'id', Long.parseLong(params.carrera)
+					}
+					and {
+						ciclo {
+							eq 'id', Long.parseLong(params.ciclo)
+						}
+					}
+				}
+			}
+		}
+		render(template: "comboGrupo2", model: [grupos: grupos])
+	}
+	
 	def actualizarAlumnos() {
-		System.out.println("actualizarAlumnos")
-		def alumnos = Alumno.list()
-		render(template: "multiSelectAlumnos", model: [alumnos: alumnos])
+		//def alumnos = Alumno.list()
+		
+		System.out.println(params)
+		def alumnosasi = new ArrayList()
+		
+		if(!params.grupoasi.equals("")) {
+			def criterio = Alumno.createCriteria()
+			if (criterio) {
+				alumnosasi = criterio.listDistinct {
+					grupos {
+						eq 'id', Long.parseLong(params.grupoasi)
+					}
+				}
+			}
+		}
+		
+		def alumnos = new ArrayList()
+		
+		
+		if(!params.nombre== null) {
+				alumnos = Alumno.findAllByNombreLike("%"+params.nombre+"%")
+		}else if(!params.grupo.equals("")) {
+			def criterio = Alumno.createCriteria()
+			if (criterio) {
+				alumnos = criterio.listDistinct {
+					grupos {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+				}
+			}
+		}
+		
+		render(template: "msAlumnos", model: [alumnos: alumnos, alumnosasi:alumnosasi])
 	}
 	
 	def save_inscripciones() {
 		System.out.println('save_inscripciones')
 		System.out.println(params)
+	}
+	
+	def inscribirb(){
+		
+	}
+	
+	def actualizarGrupos3(){
+		System.out.println(params)
+		def grupos = new ArrayList()
+		if(!params.carrera.equals("") && !params.ciclo.equals("")) {
+			def criterio = Grupo.createCriteria()
+			if (criterio) {
+				grupos = criterio.listDistinct {
+					carrera {
+						eq 'id', Long.parseLong(params.carrera)
+					}
+					and {
+						ciclo {
+							eq 'id', Long.parseLong(params.ciclo)
+						}
+					}
+				}
+			}
+		}
+		render(template: "comboGrupoasi", model: [grupos: grupos])
 	}
 }
