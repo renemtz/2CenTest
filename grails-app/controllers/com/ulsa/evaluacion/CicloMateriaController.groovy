@@ -99,4 +99,36 @@ class CicloMateriaController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def crear(){
+		
+	}
+	
+	def actualizarMaterias(){
+		System.out.println(params) //ciclo carrera
+		def ciclomaterias
+		def estan = new ArrayList()
+		def noestan = new ArrayList()
+		
+		if(!params.ciclo.equals("")) {
+			def materias = Materia.findAllByCarrera(Carrera.findById(Long.parseLong(params.carrera)))
+			boolean esta
+			for (Materia m in materias) {
+				esta = false
+				for (CicloMateria cm in m.cicloMaterias){
+					if(cm.ciclos.id.equals(Long.parseLong(params.ciclo))){
+						esta = true
+					}
+				}
+				if(esta) {
+					estan.add(m)
+				} else {
+					noestan.add(m)
+				}
+			}
+		}
+		
+		
+		render(template: "msMaterias", model: [ciclomaterias: noestan, materiasas: estan])
+	}
 }
