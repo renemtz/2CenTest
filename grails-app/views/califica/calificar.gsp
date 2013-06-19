@@ -19,10 +19,9 @@
 			}
 		}
 		if ((formFieldList.length/5)==contador) {
-			alert('completos');
 			$("#formulario").submit();
 		} else {
-			alert('incompletos');
+			alert('Debes evaluar todos los puntos');
 		}
 		/*
 		for ( var i = 0; i < elementos.length; i++) {
@@ -34,23 +33,30 @@
 </head>
 <body>
 	<g:if test="${clase}">
+		<div class="nav" role="navigation">
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/alumno/inicio')}"><g:message
+							code="Inicio" /></a></li>
+				
+			</ul>
+		</div>
 
 		<g:form id="formulario" name="formulario" action="save_calificaciones">
 			<fieldset class="form">
-				<br> Profesor:
+				<br> <strong>Profesor:</strong>
 				${clase?.profesor?.nombre}
 				${clase?.profesor?.paterno}
 				${clase?.profesor?.materno}
-				<br> Asignatura:
+				<br> <strong>Asignatura:</strong>
 				${clase?.materia}
 				<br> <br>
 				<p>
-					Responde según corresponda <br>
+					<strong>Responde según corresponda</strong> <br>
 				</p>
-				<p>P = Pésimo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M =
-					Malo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R =
-					Regular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MB = Muy
-					bien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; E = Excelente</p>
+				<p><strong>P</strong> = Pésimo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>M</strong> =
+					Malo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>R</strong> =
+					Regular&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>MB</strong> = Muy
+					bien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>E</strong> = Excelente</p>
 				<br> <br>
 				<g:hiddenField name="idClase" value="${clase?.id}" />
 				<table id="tabla" name="tabla">

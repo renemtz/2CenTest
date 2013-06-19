@@ -100,18 +100,62 @@ class CalificaController {
         }
     }
 	
-	def calificar(long id) {
+	def calificar(Long id) {
 		def clase = Clase.get(id)
-		if (!clase) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'clase.label', default: 'Clase'), id])
-			redirect(controller: "clase", action: "list")
-			return
+		boolean esta=false
+		def alumno = session.alumno
+		//verificamos si la clase le corresponde al alumno
+		if (clase) {
+			def grupo = clase.grupo
+			
+			
+			for (Alumno a in grupo.alumnos) {
+				if (alumno.id == a.id) {
+					esta=true
+				}
+			}
 		}
-		[clase: clase]
+		
+		if (esta) {
+			//verificamos si ya contestó la evaluación
+			def califica = Califica.findByClaseAndAlumno(clase, alumno)
+			if (califica) {
+				//Ya la ha contestado
+				redirect(controller: "alumno", action: "inicio")
+			} else {
+				//No la ha contestado
+				[clase: clase]
+			}
+			
+		} else {
+			redirect(controller: "alumno", action: "inicio")
+		}
+		
+		
+		
+		
 		
 	}
 	
 	def save_calificaciones() {
-		System.out.println(params)
+		System.out.println("key "+params.keySet().toList())
+		System.out.println("values "+params.values().toList())
+		//Identificamos los índices de donde se encuentran los valores
+		String name
+		for (int i=0; i<params.keySet().toList().size; i++) {
+			name = params.keySet().toList().get(i)
+			if (name.contains("p")) {
+				name = name.replaceAll("p", "")
+				def califica = new Califica(puntuacion: Integer.parseInt(params.values().toList().get(i)), pregunta:Pregunta.findById(Long.parseLong(name)), clase: Clase.findById(Long.parseLong(params.idClase)), alumno: session.alumno)
+				if (califica.save()) {
+					System.out.println("Correcto")
+					
+				} else {
+					System.out.println("Error")
+				}
+			}
+		}
+		redirect(controller: "alumno", action: "inicio")
 	}
+	
 }
