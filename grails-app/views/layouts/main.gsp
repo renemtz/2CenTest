@@ -61,12 +61,11 @@
 			<li class="topmenu"><a href="#"
 				style="height: 18px; line-height: 18px;"><span>Procesos</span></a>
 				<ul>
-					<li><a href="/2CenTest/grupo/inscribirb" title="Asigna los alumnos a grupos">Inscripciones</a></li>
-					<li><a href="/2CenTest/evaluacion/asignar">Asignar evaluación</a></li>
-					<li><a href="/2CenTest/clase/asignarProfesor">Asignar profesores a
-							clases</a></li>
 					<li><a href="/2CenTest/cicloMateria/crear">Crear plan de estudio</a></li>
 					<li><a href="/2CenTest/grupo/crear">Autogenerar grupos y clases</a></li>
+					<li><a href="/2CenTest/clase/asignarProfesor">Asignar profesores</a></li>
+					<li><a href="/2CenTest/evaluacion/asignar">Asignar evaluación</a></li>
+					<li><a href="/2CenTest/grupo/inscribirb" title="Asigna los alumnos a grupos">Inscripciones</a></li>
 				</ul></li>
 			<li class="topmenu"><a href="#"
 				style="height: 18px; line-height: 18px;"><span>Reportes</span></a>
