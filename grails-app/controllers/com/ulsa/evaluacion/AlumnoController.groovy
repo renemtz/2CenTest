@@ -196,4 +196,8 @@ class AlumnoController {
 			redirect(action: "login", alumno: null)
 		}
 	}
+	
+	def inicioAdmin(){
+		
+	}
 }
