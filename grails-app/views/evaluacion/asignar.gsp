@@ -4,27 +4,64 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Asignar Evaluaciones</title>
 <meta name="layout" content="main">
-<script>
-	
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script language="Javascript">
+function SelectMoveRows(SS1,SS2)
+{
+    var SelID='';
+    var SelText='';
+    // Move rows from SS1 to SS2 from bottom to top
+    for (i=SS1.options.length - 1; i>=0; i--)
+    {
+        if (SS1.options[i].selected == true)
+        {
+            SelID=SS1.options[i].value;
+            SelText=SS1.options[i].text;
+            var newRow = new Option(SelText,SelID);
+            SS2.options[SS2.length]=newRow;
+            SS1.options[i]=null;
+        }
+    }
+    SelectSort(SS2);
+}
+function SelectSort(SelList)
+{
+    var ID='';
+    var Text='';
+    for (x=0; x < SelList.length - 1; x++)
+    {
+        for (y=x + 1; y < SelList.length; y++)
+        {
+            if (SelList[x].text > SelList[y].text)
+            {
+                // Swap rows
+                ID=SelList[x].value;
+                Text=SelList[x].text;
+                SelList[x].value=SelList[y].value;
+                SelList[x].text=SelList[y].text;
+                SelList[y].value=ID;
+                SelList[y].text=Text;
+            }
+        }
+    }
+}
 </script>
-<link rel="stylesheet" type="text/css" href="estilo.css" />
-<link rel="stylesheet" href="cssms/common.css" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/ui-lightness/jquery-ui.css" />
-	<link type="text/css" href="cssms/ui.multiselect.css" rel="stylesheet" />
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="jsms/plugins/localisation/jquery.localisation-min.js"></script>
-	<script type="text/javascript" src="jsms/plugins/scrollTo/jquery.scrollTo-min.js"></script>
-	<script type="text/javascript" src="jsms/ui.multiselect.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$.localise('ui-multiselect', {/*language: 'en',*/ path: 'jsms/locale/'});
-			$(".multiselect").multiselect();
-			$('#switcher').themeswitcher();
-		});
-	</script>
+<script>
+function selecciona(id)
+{
+  id=document.getElementById(id);
+  for (i=0; ele = id.options[i]; i++)
+   {
+    ele.selected = true;
+   }
+}
+</script>
+
 </head>
 <body>
+
 	<a href="#edit-clase" class="skip" tabindex="-1"><g:message
 			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
 	<div class="nav" role="navigation">
@@ -57,7 +94,7 @@
 				</g:eachError>
 			</ul>
 		</g:hasErrors>
-		<g:form method="post">
+		<g:form method="post" name="Example" id="Example" action="asignarEvaluaciones" onsubmit="selecciona('FeatureCodes')">
 			<g:hiddenField name="id" value="${claseInstance?.id}" />
 			<g:hiddenField name="version" value="${claseInstance?.version}" />
 
@@ -102,14 +139,14 @@
 				</div>
 				
 				<g:render template="comboGrupo" />
-
-				<g:render template="clasesaAsignar" />
+				<!-- -----------------form---------------------------- -->
+					<g:render template="clasesaAsignar" />
+				<!-- -----------------form---------------------------- -->
 				
 			</fieldset>
 
 			<fieldset class="buttons">
-				<g:actionSubmit class="save" action="asignar"
-					value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				<g:submitButton name="create" class="save" value="Asignar" />
 			</fieldset>
 		</g:form>
 	</div>

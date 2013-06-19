@@ -9,4 +9,5 @@ class Grupo {
     static constraints = {
 		nombre nullable:false
     }
+	
 }

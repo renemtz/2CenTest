@@ -14,4 +14,5 @@ class Clase {
 		materia nullable: true
 		grupo nullable: true
     }
+
 }

@@ -146,9 +146,27 @@ class EvaluacionController {
 				}
 			}
 		}
+		def clasesas
+		
+		if(!params.grupo.equals("")) {
+			def criterio = Clase.createCriteria()
+			if (criterio) {
+				clasesas = criterio.listDistinct {
+					grupo {
+						eq 'id', Long.parseLong(params.grupo)
+					}
+					and {
+						evaluacion{
+							eq 'id', Long.parseLong(params.evaluacion)
+						}
+					}
+				}
+			}
+		}
+		
 		System.out.println("entra "+(clases!=null?clases.size():"0"))
 		
-		render(template: "clasesaAsignar", model: [clases: clases])
+		render(template: "clasesaAsignar", model: [clases: clases, clasesas: clasesas])
 	}
 	
 	def actualizarClasesAsignadas(){
@@ -198,5 +216,9 @@ class EvaluacionController {
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'evaluacion.label', default: 'Evaluacion'), evaluacion.id])
 		redirect(action: "show", id: evaluacion.id)
+	}
+	
+	def asignarEvaluaciones(){
+			System.out.println(params)
 	}
 }
